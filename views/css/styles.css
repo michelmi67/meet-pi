@@ -1,0 +1,149 @@
+/* views/css/styles.css */
+
+/* Import de la police Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+:root {
+    /* --- PALETTE LUXE PI (DARK MODE) --- */
+    --bg-dark: #120c1f;           /* Fond principal très sombre */
+    --card-bg: rgba(30, 25, 45, 0.95); /* Carte sombre semi-transparente */
+    --text-main: #ffffff;         /* Texte blanc */
+    --text-muted: #bbbbbb;        /* Texte gris clair */
+    --pi-gold: #FDB813;           /* Le JAUNE PI (Or) */
+    --pi-gold-hover: #ffcf4b;     /* Or plus clair au survol */
+    --input-bg: #2a2435;          /* Fond des champs */
+    --input-border: #3e3550;      /* Bordure discrète */
+    --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    /* Dégradé radial subtil pour donner de la profondeur */
+    background-image: radial-gradient(circle at 50% 0%, #4b0082 0%, var(--bg-dark) 65%);
+    background-attachment: fixed; /* Le fond reste fixe quand on scrolle */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    margin: 0;
+}
+
+/* --- LA CARTE (CARD) --- */
+.card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    backdrop-filter: blur(10px); /* Effet de flou derrière la carte */
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 30px 15px 30px;
+    text-align: center;
+}
+
+.card-header h4 {
+    color: var(--pi-gold);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.card-body {
+    padding: 40px;
+}
+
+/* --- LES CHAMPS (INPUTS) --- */
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    margin-left: 4px;
+}
+
+.form-control {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-main);
+    border-radius: 12px;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Couleur du texte placeholder (le texte gris "Ex: France") */
+.form-control::placeholder {
+    color: #666;
+}
+
+/* Focus : quand on clique dans le champ */
+.form-control:focus {
+    background-color: var(--input-bg);
+    border-color: var(--pi-gold);
+    box-shadow: 0 0 0 3px rgba(253, 184, 19, 0.15); /* Halo doré */
+    color: #fff;
+}
+
+/* Petit texte d'aide sous les champs */
+.form-text.text-muted {
+    color: #888 !important;
+}
+
+/* --- LE BOUTON DE VALIDATION --- */
+#btn-submit {
+    background: linear-gradient(135deg, var(--pi-gold), #d49600);
+    border: none;
+    color: #222; /* Texte noir sur fond or pour le contraste */
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(212, 150, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 15px;
+}
+
+#btn-submit:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(253, 184, 19, 0.5);
+    color: #000;
+}
+
+#btn-submit:disabled {
+    background: #3e3550;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- STATUS AUTHENTIFICATION --- */
+#pi-user-status {
+    border-radius: 12px;
+    background: rgba(253, 184, 19, 0.05);
+    border: 1px solid rgba(253, 184, 19, 0.1);
+    color: var(--pi-gold);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+#pi-user-status.alert-success {
+    background: rgba(40, 167, 69, 0.1);
+    border-color: rgba(40, 167, 69, 0.2);
+    color: #4cd964; /* Vert clair lumineux */
+}
+
+#pi-user-status.alert-danger {
+    background: rgba(220, 53, 69, 0.1);
+    border-color: rgba(220, 53, 69, 0.2);
+    color: #ff6b6b;
+}

@@ -10,7 +10,7 @@ app.use(express.json());
 // Configuration CORS : autorise Netlify, Pi Wallet et sandbox Pi
 app.use(cors({
   origin: [
-    'https://meet-pi.netlify.app',    // Front prod
+    'https://meet-pi.free.nf',    // Front prod
     'https://wallet.pinet.com',        // Pi Wallet
     'https://sandbox.minepi.com'       // Sandbox
   ]
