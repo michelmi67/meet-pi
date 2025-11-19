@@ -1,5 +1,5 @@
 // server.js
-require('dotenv').config(); // Charger les variables depuis .env
+require('dotenv').config({ path: __dirname + '/.env' }); // Charger les variables depuis .env
 const express = require('express');
 const cors    = require('cors');
 const fetch   = require('node-fetch').default;
