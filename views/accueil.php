@@ -6,11 +6,10 @@
   <title>Meet‑Pi Dating App</title>
   <script src="https://sdk.minepi.com/pi-sdk.js"></script>
   <script>
-    const isSandbox = window.API_URL = 'https://meet-pi.onrender.com';
-    // Initialise le SDK Pi : sandbox=true en dev (Netlify branch test)
-    //const isSandbox = window.location.hostname.includes('sandbox.minepi.com');
-    Pi.init({ version: '2.0', sandbox: isSandbox });
-
+    
+    // L'authentification échoue si 'sandbox' est forcé à 'true' en Mainnet.
+    const isSandbox = window.location.hostname.includes('sandbox.minepi.com');
+    Pi.init({ version: '2.0', sandbox: isSandbox}); // Utilise la détection dynamique
     // URL du backend
     //window.API_URL = isSandbox
     //  ? 'https://meet-pi.free.nf'

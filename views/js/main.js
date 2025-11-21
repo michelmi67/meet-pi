@@ -9,24 +9,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     logDiv.appendChild(p); logDiv.scrollTop = logDiv.scrollHeight;
   }
 
-  // Authentification Pi
-  try {
-    log('Starting authentication');
-    const auth = await Pi.authenticate(['username','wallet_address','payments'], payment => {
-      // Sur paiement incomplet, tenter completion
-      /*log(`Incomplete payment ${payment.identifier}`);
-      fetch(`${API_URL}/api/complete-payment`, {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ paymentId: payment.identifier, txid: payment.transaction?.txid })
-      }).then(r=>log(`complete fetched ${r.status}`));*/
-    });
-    status.textContent = `Connected: ${auth.user.username}`;
-    payBtn.disabled = false;
-    log(`Authenticated as ${auth.user.username}`);
-  } catch (e) {
-    status.textContent = 'Auth failed'; log(`Auth error: ${e.message}`);
-    return;
-  }
+// Script inline simplifié pour gérer l'auth 
+
+    async function authPi() {
+      try {
+            const scopes = ['username'];
+            const auth = await Pi.authenticate(scopes, onIncompletePaymentFound);
+            
+            // Remplissage des champs cachés et de l'interface
+            document.getElementById('pi_username').value = auth.user.username;
+            document.getElementById('pi_uid').value = auth.user.uid;
+            
+            document.getElementById('pi-user-status').className = 'alert alert-success';
+            document.getElementById('pi-user-status').textContent = `Authentifié en tant que : @${auth.user.username}`;
+            
+            // Activer le bouton
+            document.getElementById('btn-submit').disabled = false;
+            
+            } catch (err) {
+                console.error(err);
+                document.getElementById('pi-user-status').className = 'alert alert-danger';
+                // Détail ajouté : rappeler à l'utilisateur d'utiliser le Pi Browser
+                document.getElementById('pi-user-status').textContent = "Erreur d'authentification Pi. Assurez-vous d'être dans le Pi Browser.";
+            }
+    }
 
   /*// Paiement
   payBtn.addEventListener('click', () => {
