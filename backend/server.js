@@ -79,6 +79,11 @@ app.post('/api/complete-payment', async (req, res) => {
   }
 });
 
+// Route de bienvenue pour la racine
+app.get('/', (req, res) => {
+    res.json({ success: true, message: 'Meet-Pi API is running. Use /api/approve-payment or /api/complete-payment' });
+});
+
 // 404
 app.use((req, res) => res.status(404).json({ success: false, error: 'Route introuvable' }));
 
