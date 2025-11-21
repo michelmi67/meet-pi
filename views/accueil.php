@@ -6,18 +6,18 @@
   <title>Meet‑Pi Dating App</title>
   <script src="https://sdk.minepi.com/pi-sdk.js"></script>
   <script>
-
+    const isSandbox = window.API_URL = 'https://meet-pi.onrender.com';
     // Initialise le SDK Pi : sandbox=true en dev (Netlify branch test)
     //const isSandbox = window.location.hostname.includes('sandbox.minepi.com');
-    Pi.init({ version: '2.0', /*sandbox: true*/ isSandbox });
+    Pi.init({ version: '2.0', sandbox: isSandbox });
 
     // URL du backend
-    window.API_URL = isSandbox
+    //window.API_URL = isSandbox
     //  ? 'https://meet-pi.free.nf'
     //  : 'https://meet-pi.onrender.com';
     // Le backend de paiement (server.js) est hébergé sur Render
     // Cette URL est utilisée pour les appels d'approbation et de complétion.
-    window.API_URL = 'https://meet-pi.onrender.com';
+    //window.API_URL = 'https://meet-pi.onrender.com';
 
   </script>
 

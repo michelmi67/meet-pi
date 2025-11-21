@@ -19,6 +19,9 @@ app.use(cors({
 // Base URL de l'API Pi (testnet ou mainnet)
 const PI_API_BASE_URL = process.env.PI_API_BASE_URL;
 
+// --- AJOUTER CETTE LIGNE TEMPORAIRE ---
+console.log('API Pi URL utilisée:', PI_API_BASE_URL);
+
 // Clé API serveur Pi
 const API_KEY = process.env.PI_API_KEY;
 if (!API_KEY) {

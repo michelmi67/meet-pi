@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     log('Starting authentication');
     const auth = await Pi.authenticate(['username','wallet_address','payments'], payment => {
       // Sur paiement incomplet, tenter completion
-      log(`Incomplete payment ${payment.identifier}`);
+      /*log(`Incomplete payment ${payment.identifier}`);
       fetch(`${API_URL}/api/complete-payment`, {
         method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ paymentId: payment.identifier, txid: payment.transaction?.txid })
-      }).then(r=>log(`complete fetched ${r.status}`));
+      }).then(r=>log(`complete fetched ${r.status}`));*/
     });
     status.textContent = `Connected: ${auth.user.username}`;
     payBtn.disabled = false;
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Paiement
+  /*// Paiement
   payBtn.addEventListener('click', () => {
     payBtn.disabled = true; status.textContent = 'Processing payment…';
     log('Initiating payment…');
@@ -55,5 +55,5 @@ document.addEventListener('DOMContentLoaded', async () => {
       onCancel: id => { status.textContent='Payment cancelled'; payBtn.disabled=false; log(`Canceled ${id}`); },
       onError: (err,pm)=>(status.textContent='Error', log(`Error ${err.message}`))
     });
-  });
+  });*/
 });
